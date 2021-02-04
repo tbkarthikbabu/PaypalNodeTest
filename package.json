@@ -1,0 +1,17 @@
+{
+  "name": "paypalnodetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "paypal-rest-sdk": "^1.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon ./ --inspect"
+  },
+  "author": "",
+  "license": "ISC"
+}
