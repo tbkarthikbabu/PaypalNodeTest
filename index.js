@@ -1,6 +1,5 @@
 const express = require('express');
 const paypal = require('paypal-rest-sdk');
-const PORT = 3000;
 
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
@@ -12,8 +11,8 @@ const app = express();
 
 app.get('/', (req, res) => res.sendFile(__dirname + "/index.html"));
 
-
-app.listen(PORT, () => console.log(`Server Started on ${PORT}`));
+app.listen(process.env.PORT || 5000)
+console.log(`Server Started on`);
 
 app.post('/pay', (req, res) => {
     const create_payment_json = {
@@ -22,22 +21,22 @@ app.post('/pay', (req, res) => {
           "payment_method": "paypal"
       },
       "redirect_urls": {
-          "return_url": "http://paypal-node-test.herokuapp.com/success",
-          "cancel_url": "http://paypal-node-test.herokuapp.com/cancel"
+          "return_url": "http://localhost:3000/success",
+          "cancel_url": "http://localhost:3000/cancel"
       },
       "transactions": [{
           "item_list": {
               "items": [{
                   "name": "Perceptual-Hashing",
                   "sku": "001",
-                  "price": "8.99",
+                  "price": "10.99",
                   "currency": "USD",
                   "quantity": 1
               }]
           },
           "amount": {
               "currency": "USD",
-              "total": "7.99"
+              "total": "10.99"
           },
           "description": "Perceptual-Hashing"
       }]
